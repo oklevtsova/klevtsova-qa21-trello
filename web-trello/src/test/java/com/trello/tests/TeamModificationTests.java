@@ -4,10 +4,17 @@
 //import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.remote.BrowserType;
+//import org.testng.annotations.BeforeMethod;
 //import org.testng.annotations.Test;
 //
 //public class TeamModificationTests extends TestBase {
 //
+//@BeforeMethod
+//public void precondition(){
+//    if(!app.getTeamHelper().isTeamsPresent()){
+//        app.getTeamHelper().createTeam();
+//    }
+//}
 //
 //    @Test
 //    public void testRenameTeam(){
@@ -39,4 +46,5 @@
 //            driver = new FirefoxDriver();
 //        }
 //    }
+//
 //}
