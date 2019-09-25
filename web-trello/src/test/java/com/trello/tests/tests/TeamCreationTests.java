@@ -1,11 +1,7 @@
-package com.trello.tests;
+package com.trello.tests.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class TeamCreationTests extends TestBase {
 

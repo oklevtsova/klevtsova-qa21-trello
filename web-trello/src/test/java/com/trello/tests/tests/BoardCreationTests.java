@@ -1,4 +1,4 @@
-package com.trello.tests;
+package com.trello.tests.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -19,7 +19,7 @@ public class BoardCreationTests extends TestBase {
         app.getBoardHelper().fillBoardCreationForm("QA-21", "descr");
         app.getBoardHelper().confirmBoardCreation();
         app.getBoardHelper().returnToHomePage();
-        int afterCreation = app.getBoardHelper().getPersonalBoardsCount();
+        int afterCreation = app.getBoardHelper() .getPersonalBoardsCount();
 
         Assert.assertEquals(afterCreation, beforeCreation+1);
     }

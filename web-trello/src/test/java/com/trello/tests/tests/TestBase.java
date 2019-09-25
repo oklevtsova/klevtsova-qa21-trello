@@ -1,12 +1,13 @@
-package com.trello.tests;
+package com.trello.tests.tests;
 
+import com.trello.tests.manager.ApplicationManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 
 public class TestBase {
 
-    protected static ApplicationManager app = new ApplicationManager();
+    public static ApplicationManager app = new ApplicationManager();
 
     @BeforeClass
     public void setUp(){

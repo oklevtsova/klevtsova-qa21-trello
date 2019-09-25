@@ -1,4 +1,4 @@
-package com.trello.tests;
+package com.trello.tests.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
