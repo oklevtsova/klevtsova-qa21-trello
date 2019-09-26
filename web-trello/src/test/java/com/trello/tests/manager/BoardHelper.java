@@ -1,20 +1,22 @@
 package com.trello.tests.manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BoardHelper extends HelperBase {
     public BoardHelper(WebDriver driver) {
-            super(driver);
+        super(driver);
     }
 
     public void fillBoardCreationForm(String boardName, String s) {
-        type(By.cssSelector("[data-test-id='header-create-board-title-input']"),boardName);
+        type(By.cssSelector("[data-test-id='header-create-board-title-input']"), boardName);
 
-        if(isElementPresent(By.cssSelector(".W6rMLOx8U0MrPx"))){
+        if (isElementPresent(By.cssSelector(".W6rMLOx8U0MrPx"))) {
             click(By.cssSelector(".W6rMLOx8U0MrPx"));
             click(By.xpath("//nav[@class='SdlcRrTVPA8Y3K']//li[1]"));
         }
@@ -30,7 +32,7 @@ public class BoardHelper extends HelperBase {
     }
 
     public int getPersonalBoardsCount() {
-        return driver.findElements(By.xpath("//*[@class = 'icon-lg icon-member']/../../..//li")).size()-1;
+        return driver.findElements(By.xpath("//*[@class = 'icon-lg icon-member']/../../..//li")).size() - 1;
     }
 
     public void confirmFinishBoardDeletion() {
@@ -47,6 +49,7 @@ public class BoardHelper extends HelperBase {
         clickCloseBoardButton();
         confirmCloseButton();
     }
+
     public void confirmCloseButton() {
         click(By.cssSelector(".js-confirm.full.negate"));
     }
@@ -70,4 +73,37 @@ public class BoardHelper extends HelperBase {
         click(By.xpath("//*[@class='icon-lg icon-member']/../../..//li"));
     }
 
+    public void createBoard() {
+
+        clickOnPlusButtonOnHeader();
+        selectCreateBoardFromDropDown();
+        fillBoardCreationForm("QA-21", "descr");
+        confirmBoardCreation();
+        returnToHomePage();
+    }
+
+    public void initChangeBoard() {
+        WebElement nameField = driver.findElement(By.cssSelector(".js-rename-board"));
+        new Actions(driver).moveToElement(nameField).pause(10).click().perform();
+        type(By.cssSelector("input.js-board-name-input"), "new");
+        driver.findElement(By.cssSelector("input.js-board-name-input")).sendKeys(Keys.ENTER);
+    }
+
+    public String getPersonalBoardsName() {
+        return driver.findElement(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).getText();
+    }
+
+    public String getNameAfterChange() {
+        return driver.findElement(By.cssSelector("js-rename-board")).getText();
+    }
+
+    public void changeBoardName(String newName) {
+        driver.findElement(By.cssSelector(".js-rename-board")).click();
+        driver.findElement(By.cssSelector("input.js-board-name-input")).sendKeys(newName);
+        returnToHomePage();
+    }
+
+//    public boolean findBoardByName(String name) {
+//        return driver.findElement(By.xpath("//*[@class='icon-lg icon-member']/../../..//li").getText().equels(name));
+//    }
 }

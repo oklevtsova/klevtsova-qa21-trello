@@ -14,11 +14,13 @@ public class BoardCreationTests extends TestBase {
     @Test
     public void testBoardCreation() throws InterruptedException {
         int beforeCreation = app.getBoardHelper().getPersonalBoardsCount();
+
         app.getBoardHelper().clickOnPlusButtonOnHeader();
         app.getBoardHelper().selectCreateBoardFromDropDown();
         app.getBoardHelper().fillBoardCreationForm("QA-21", "descr");
         app.getBoardHelper().confirmBoardCreation();
         app.getBoardHelper().returnToHomePage();
+
         int afterCreation = app.getBoardHelper() .getPersonalBoardsCount();
 
         Assert.assertEquals(afterCreation, beforeCreation+1);

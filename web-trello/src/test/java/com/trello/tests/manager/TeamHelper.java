@@ -15,9 +15,9 @@ public class TeamHelper extends HelperBase{
         click(By.cssSelector("[type=submit]"));
     }
 
-    public void fillTeamCreationForm(String teamName, String description) {
-        type(By.cssSelector("[data-test-id='header-create-team-name-input']"),teamName);
-        type(By.cssSelector("textarea"),description);
+    public void fillTeamCreationForm(TeamData team) {
+        type(By.cssSelector("[data-test-id='header-create-team-name-input']"), team.getTeamName());
+        type(By.cssSelector("textarea"), team.getDescription());
     }
 
     public void selectCreateTeamFromDropDown() {
@@ -26,7 +26,7 @@ public class TeamHelper extends HelperBase{
 
     public String getTeamNameFromTeamPage() throws InterruptedException {
         //new WebDriverWait(driver,15).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")));
-        Thread.sleep(10000);
+       // Thread.sleep(10000);
         return driver.findElement(By.cssSelector("h1")).getText();
     }
 
@@ -78,5 +78,18 @@ public class TeamHelper extends HelperBase{
 
     public void confirmEditTeam() {
         click(By.cssSelector(".js-submit-profile"));
+    }
+
+    public boolean isTeamsPresent() {
+        return getTeamsCount()>0;
+    }
+
+    public void createTeam() {
+        clickOnPlusButtonOnHeader();
+        selectCreateTeamFromDropDown();
+        String teamName = "QA21 - " + System.currentTimeMillis();
+        fillTeamCreationForm(new TeamData().withTeamName(teamName).withDescription("descr qa21"));
+        clickContinueButton();
+        returnToHomePage();
     }
 }

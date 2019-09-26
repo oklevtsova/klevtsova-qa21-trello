@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BoardDeletionTest extends TestBase {
@@ -14,6 +15,13 @@ public class BoardDeletionTest extends TestBase {
             app.getSessionHelper().login("o.klevtsova1@gmail.com","25031992Klevtsova");
         }
     }
+    @BeforeMethod
+    public void preconditions() {
+        if (!app.getBoardHelper().isTherePersonalBoards()) {
+            app.getBoardHelper().createBoard();
+        }
+    }
+
     @Test
     public void BoardDeletion() throws InterruptedException {
         int before = app.getBoardHelper().getPersonalBoardsCount();

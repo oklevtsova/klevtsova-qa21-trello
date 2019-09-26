@@ -8,6 +8,8 @@
             <class name="com.trello.tests.tests.TeamDeletionTests"/>
             <class name="com.trello.tests.tests.BoardCreationTests"/>
             <class name="com.trello.tests.tests.BoardDeletionTest"/>
+            <class name="com.trello.tests.tests.TeamModificationTests"/>
+            <class name="com.trello.tests.tests.BoardModificationTest"/>
         </classes>
     </test>
 </suite>
