@@ -52,23 +52,23 @@ list.add(new Object[]{new TeamData().withTeamName(split[0]).withDescription(spli
             app.getTeamHelper().returnToHomePage();
         }
     }
-//    @Test(dataProvider = "validTeams")
-//    public void testTeamCreationFromPlusButtonOnHeaderWithDataProviderFromcsv(TeamData team) {
-//        TeamData team = new TeamData().withTeamName(teamName).withDescription(description);
-//        int before = app.getTeamHelper().getTeamsCount();
-//        app.getTeamHelper().clickOnPlusButtonOnHeader();
-//        app.getTeamHelper().selectCreateTeamFromDropDown();
-//
-//        app.getTeamHelper().fillTeamCreationForm(team);
-//        app.getTeamHelper().clickContinueButton();
-//        //String createdTeamName = getTeamNameFromTeamPage();
-//        app.getTeamHelper().returnToHomePage();
-//        int after = app.getTeamHelper().getTeamsCount();
-//        Assert.assertEquals(after, before + 1);
-//        // Assert.assertEquals(createdTeamName.toLowerCase(),teamName.toLowerCase());
-//
-//        // Assert.assertTrue(isUserLoggedIn());
-//    }
+    @Test(dataProvider = "validTeamsfromcsv")
+   public void testTeamCreationFromPlusButtonOnHeaderWithDataProviderFromcsv(TeamData team) {
+
+        int before = app.getTeamHelper().getTeamsCount();
+        app.getTeamHelper().clickOnPlusButtonOnHeader();
+        app.getTeamHelper().selectCreateTeamFromDropDown();
+
+        app.getTeamHelper().fillTeamCreationForm(team);
+      app.getTeamHelper().clickContinueButton();
+        //String createdTeamName = getTeamNameFromTeamPage();
+       app.getTeamHelper().returnToHomePage();
+       int after = app.getTeamHelper().getTeamsCount();
+       Assert.assertEquals(after, before + 1);
+        // Assert.assertEquals(createdTeamName.toLowerCase(),teamName.toLowerCase());
+
+        // Assert.assertTrue(isUserLoggedIn());
+    }
 
     @Test(dataProvider = "validTeams")
     public void testTeamCreationFromPlusButtonOnHeaderWithDataProvider(String teamName, String description) {

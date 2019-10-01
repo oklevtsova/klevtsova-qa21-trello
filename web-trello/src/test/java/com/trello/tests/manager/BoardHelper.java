@@ -97,7 +97,7 @@ public class BoardHelper extends HelperBase {
         return driver.findElement(By.cssSelector("js-rename-board")).getText();
     }
 
-    public void changeBoardName(String newName) {
+    public void  changeBoardName(String newName) {
         driver.findElement(By.cssSelector(".js-rename-board")).click();
         driver.findElement(By.cssSelector("input.js-board-name-input")).sendKeys(newName);
         returnToHomePage();

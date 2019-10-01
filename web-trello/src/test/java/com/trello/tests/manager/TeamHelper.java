@@ -46,7 +46,7 @@ public class TeamHelper extends HelperBase{
 
     public void openSettings() throws InterruptedException {
         Thread.sleep(5000);
-        click(By.xpath("//*[@class='icon-gear icon-sm OiX3P2i2J92Xat']/../../.."));
+        click(By.cssSelector("ul .icon-gear.icon-sm"));
     }
 
     public void clickOnFirstTeam() {
