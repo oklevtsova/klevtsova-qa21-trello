@@ -14,7 +14,6 @@ import java.util.List;
 public class BoardCreationTests extends TestBase {
 
     @DataProvider
-
     public Iterator<Object[]> validBoards(){
 
         List<Object[]> list = new ArrayList<>();
