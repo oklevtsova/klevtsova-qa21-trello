@@ -1,19 +1,11 @@
-package com.trello.tests.manager;
+package com.trello.tests.tests;
 
 public class BoardData {
-
-    private String boardName;
+    private   String boardName;
     private String description;
 
 
 
-    public String getBoardName() {
-        return boardName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public BoardData withBoardName(String boardName) {
         this.boardName = boardName;
@@ -25,4 +17,11 @@ public class BoardData {
         return this;
     }
 
+    public String getBoardName() {
+        return boardName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

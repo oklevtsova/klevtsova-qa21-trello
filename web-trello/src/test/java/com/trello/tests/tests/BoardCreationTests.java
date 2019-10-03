@@ -1,7 +1,5 @@
 package com.trello.tests.tests;
 
-import com.trello.tests.manager.BoardData;
-import com.trello.tests.manager.TeamData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -38,7 +36,7 @@ public class BoardCreationTests extends TestBase {
 
         app.getBoardHelper().clickOnPlusButtonOnHeader();
         app.getBoardHelper().selectCreateBoardFromDropDown();
-        app.getBoardHelper().fillBoardCreationForm("QA-21", "descr");
+        app.getBoardHelper().fillBoardCreationForm(new BoardData().withBoardName("QA-21").withDescription("descr"));
         app.getBoardHelper().confirmBoardCreation();
         app.getBoardHelper().returnToHomePage();
 
@@ -46,15 +44,21 @@ public class BoardCreationTests extends TestBase {
 
         Assert.assertEquals(afterCreation, beforeCreation+1);
     }
+//    @Test(dataProvider = "validBoardsFromcsv")
+//    public void testBoardCreationFromPlusButtonOnHeaderWithDataProviderFromcsv(String boardName, String description){
+//
+//    }
+
     @Test(dataProvider = "validBoards")
 
     public void testBoardCreationFromPlusButtonOnHeaderWithDataProvider(String boardName, String description){
-        int beforeCreation = app.getBoardHelper().getPersonalBoardsCount();
+
         BoardData board = new BoardData().withBoardName(boardName).withDescription(description);
-        int before = app.getBoardHelper().getPersonalBoardsCount();
+        int beforeCreation = app.getBoardHelper().getPersonalBoardsCount();
         app.getBoardHelper().clickOnPlusButtonOnHeader();
+
         app.getBoardHelper().selectCreateBoardFromDropDown();
-        app.getBoardHelper().fillBoardCreationForm("Qa-21","D");
+        app.getBoardHelper().fillBoardCreationForm(board);
         app.getBoardHelper().confirmBoardCreation();
         app.getBoardHelper().returnToHomePage();
         int afterCreation = app.getBoardHelper() .getPersonalBoardsCount();
