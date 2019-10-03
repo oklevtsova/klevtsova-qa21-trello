@@ -32,7 +32,8 @@ public class BoardHelper extends HelperBase {
         click(By.cssSelector("[data-test-id='header-create-board-button']"));
     }
 
-    public int getPersonalBoardsCount() {
+    public int getPersonalBoardsCount() throws InterruptedException {
+        Thread.sleep(10000);
         return driver.findElements(By.xpath("//*[@class = 'icon-lg icon-member']/../../..//li")).size() - 1;
     }
 
