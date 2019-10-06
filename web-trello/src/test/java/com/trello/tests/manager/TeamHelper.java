@@ -24,6 +24,9 @@ public class TeamHelper extends HelperBase{
         click(By.cssSelector("[data-test-id='header-create-team-button']"));
     }
 
+    public void closeInviteToYourTeamButton(){
+        click(By.cssSelector(".eg0KI5SqghoOFd"));
+    }
     public String getTeamNameFromTeamPage() throws InterruptedException {
         //new WebDriverWait(driver,15).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")));
        // Thread.sleep(10000);
@@ -92,4 +95,5 @@ public class TeamHelper extends HelperBase{
         clickContinueButton();
         returnToHomePage();
     }
+
 }

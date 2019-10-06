@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +24,19 @@ public class BoardCreationTests extends TestBase {
 
         return list.iterator();
     }
+    @DataProvider
+    public Iterator<Object[]>validBoardsFromcsv() throws IOException {
+        List<Object[]>list = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/Board.csv")));
+        String line = reader.readLine();
+        while (line !=null){
+            String[]split = line.split(",");
+            list.add(new Object[]{new BoardData().withBoardName(split[0]).withDescription(split[1])});
+            line = reader.readLine();
+        }
+    return list.iterator();
+    }
+
 
     @BeforeClass
     public void ensurePreconditions(){
@@ -44,14 +58,23 @@ public class BoardCreationTests extends TestBase {
 
         Assert.assertEquals(afterCreation, beforeCreation+1);
     }
-//    @Test(dataProvider = "validBoardsFromcsv")
-//    public void testBoardCreationFromPlusButtonOnHeaderWithDataProviderFromcsv(String boardName, String description){
-//
-//    }
+    @Test(dataProvider = "validBoardsFromcsv")
+    public void testBoardCreationFromPlusButtonOnHeaderWithDataProviderFromcsv(BoardData board) throws InterruptedException {
+
+        int beforeCreation = app.getBoardHelper().getPersonalBoardsCount();
+        app.getBoardHelper().clickOnPlusButtonOnHeader();
+        app.getBoardHelper().selectCreateBoardFromDropDown();
+        app.getBoardHelper().fillBoardCreationForm(board);
+        app.getBoardHelper().confirmBoardCreation();
+        app.getBoardHelper().returnToHomePage();
+        int afterCreation = app.getBoardHelper() .getPersonalBoardsCount();
+
+        Assert.assertEquals(afterCreation, beforeCreation+1);
+    }
 
     @Test(dataProvider = "validBoards")
 
-    public void testBoardCreationFromPlusButtonOnHeaderWithDataProvider(String boardName, String description){
+    public void testBoardCreationFromPlusButtonOnHeaderWithDataProvider(String boardName, String description) throws InterruptedException {
 
         BoardData board = new BoardData().withBoardName(boardName).withDescription(description);
         int beforeCreation = app.getBoardHelper().getPersonalBoardsCount();

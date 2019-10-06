@@ -14,8 +14,8 @@ public class TestBase {
     public void setUp(){
         app.init();
 
-
     }
+
 
     @AfterClass
     public void tearDown(){
