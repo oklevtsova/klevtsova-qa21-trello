@@ -27,7 +27,7 @@ public class TeamCreationTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validTeamsfromcsv() throws IOException {
         List<Object[]> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/tests/resources.Team.csv")));
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/Team.csv")));
         String line = reader.readLine();
         while (line != null) {
 String[]split = line.split(",");
